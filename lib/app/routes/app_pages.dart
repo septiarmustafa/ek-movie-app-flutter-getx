@@ -9,8 +9,6 @@ import '../modules/favorite_movie/bindings/favorite_movie_binding.dart';
 import '../modules/favorite_movie/views/favorite_movie_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/login/bindings/login_binding.dart';
-import '../modules/login/views/login_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/watchlist_movie/bindings/watchlist_movie_binding.dart';
@@ -57,11 +55,6 @@ class AppPages {
       name: _Paths.FAVORITE_MOVIE,
       page: () => const FavoriteMovieView(),
       binding: FavoriteMovieBinding(),
-    ),
-    GetPage(
-      name: _Paths.LOGIN,
-      page: () => const LoginView(),
-      binding: LoginBinding(),
     ),
   ];
 }

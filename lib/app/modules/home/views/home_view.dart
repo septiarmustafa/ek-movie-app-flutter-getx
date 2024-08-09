@@ -40,6 +40,7 @@ class HomeView extends GetView<HomeController> {
                         Get.toNamed(
                           '/detail-movie',
                           arguments: i,
+                          parameters: {'id': i.id.toString()},
                         );
                       },
                       child: Padding(
@@ -73,6 +74,7 @@ class HomeView extends GetView<HomeController> {
                         Get.toNamed(
                           '/detail-movie',
                           arguments: i,
+                          parameters: {'id': i.id.toString()},
                         );
                       },
                       child: Padding(
@@ -106,6 +108,7 @@ class HomeView extends GetView<HomeController> {
                         Get.toNamed(
                           '/detail-movie',
                           arguments: i,
+                          parameters: {'id': i.id.toString()},
                         );
                       },
                       child: Padding(
