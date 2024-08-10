@@ -1,6 +1,6 @@
 import 'package:ek_movie_app/app/constant/colors.dart';
 import 'package:ek_movie_app/app/models/movie.dart';
-import 'package:ek_movie_app/app/services/api_url.dart';
+import 'package:ek_movie_app/app/services/api_string.dart';
 import 'package:ek_movie_app/app/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -90,6 +90,9 @@ class DetailMovieView extends GetView<DetailMovieController> {
                         Icons.star,
                         color: AppColor.brownColor,
                         size: 18,
+                      ),
+                      const SizedBox(
+                        width: 3,
                       ),
                       Text(
                         movie.voteAverage.toStringAsFixed(1),

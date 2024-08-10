@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ek_movie_app/app/constant/colors.dart';
 import 'package:ek_movie_app/app/models/genre.dart';
 import 'package:ek_movie_app/app/models/movie.dart';
 import 'package:ek_movie_app/app/services/api_services.dart';
@@ -45,7 +46,7 @@ class DetailMovieController extends GetxController {
       similarMovies.value =
           await ApiService().fetchSimilarMovies(movie.value.id);
     } catch (e) {
-      Get.snackbar('Error', e.toString());
+      Get.snackbar('Error', e.toString(), colorText: AppColor.whiteColor);
     } finally {
       isLoading(false);
     }

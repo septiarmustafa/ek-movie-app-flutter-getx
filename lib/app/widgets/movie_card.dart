@@ -1,7 +1,9 @@
+import 'package:ek_movie_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ek_movie_app/app/constant/colors.dart';
 import 'package:ek_movie_app/app/models/movie.dart';
-import 'package:ek_movie_app/app/services/api_url.dart';
+import 'package:ek_movie_app/app/services/api_string.dart';
+import 'package:get/get.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -10,6 +12,8 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ProfileController profileController = Get.put(ProfileController());
+
     return Stack(
       children: [
         Container(
@@ -77,7 +81,12 @@ class MovieCard extends StatelessWidget {
                 child: Column(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        await profileController.addToWatchlist(
+                            movie.id.toString(), true);
+                        Get.snackbar('Success', 'Added to Watchlist',
+                            colorText: AppColor.whiteColor);
+                      },
                       borderRadius: BorderRadius.circular(8),
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -92,7 +101,12 @@ class MovieCard extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        await profileController.addToFavorite(
+                            movie.id.toString(), true);
+                        Get.snackbar('Success', 'Added to Favorite',
+                            colorText: AppColor.whiteColor);
+                      },
                       borderRadius: BorderRadius.circular(8),
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),

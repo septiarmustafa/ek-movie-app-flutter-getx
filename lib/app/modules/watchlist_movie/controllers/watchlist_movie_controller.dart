@@ -1,23 +1,27 @@
+import 'package:ek_movie_app/app/constant/colors.dart';
+import 'package:ek_movie_app/app/models/movie.dart';
+import 'package:ek_movie_app/app/services/api_services.dart';
 import 'package:get/get.dart';
 
 class WatchlistMovieController extends GetxController {
-  //TODO: Implement WatchlistMovieController
+  RxList<Movie> watchlistMovies = <Movie>[].obs;
+  RxBool isLoading = true.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    fetchWatchlistMovies();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void fetchWatchlistMovies() async {
+    try {
+      isLoading(true);
+      final movies = await ApiService().fetchWatchlistMovies();
+      watchlistMovies.value = movies;
+    } catch (e) {
+      Get.snackbar('Error', e.toString(), colorText: AppColor.whiteColor);
+    } finally {
+      isLoading(false);
+    }
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

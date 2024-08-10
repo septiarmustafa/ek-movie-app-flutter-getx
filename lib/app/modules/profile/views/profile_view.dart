@@ -1,3 +1,4 @@
+import 'package:ek_movie_app/app/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,16 +10,47 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ProfileView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'ProfileView is working',
-          style: TextStyle(fontSize: 20),
+        backgroundColor: AppColor.backgroundColor,
+        appBar: AppBar(
+          title: const Text(
+            'User Profile',
+            style: TextStyle(color: AppColor.whiteColor),
+          ),
+          backgroundColor: AppColor.backgroundColor,
         ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              ListTile(
+                leading: const Icon(
+                  Icons.movie,
+                  color: AppColor.whiteColor,
+                ),
+                title: const Text(
+                  'Watchlist',
+                  style: TextStyle(color: AppColor.whiteColor),
+                ),
+                onTap: () {
+                  Get.toNamed('/watchlist-movie');
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.favorite,
+                  color: AppColor.whiteColor,
+                ),
+                title: const Text(
+                  'Favorite Movies',
+                  style: TextStyle(color: AppColor.whiteColor),
+                ),
+                onTap: () {
+                  Get.toNamed('/favorite-movie');
+                },
+              ),
+            ],
+          ),
+        ));
   }
 }

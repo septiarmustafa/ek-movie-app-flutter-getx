@@ -1,23 +1,45 @@
+import 'package:ek_movie_app/app/constant/colors.dart';
+import 'package:ek_movie_app/app/models/movie.dart';
+import 'package:ek_movie_app/app/services/api_services.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
+  RxList favoriteMovies = <Movie>[].obs;
+  RxList watchlistMovies = <Movie>[].obs;
+  RxBool isLoading = true.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    fetchFavoriteMovies();
+    fetchWatchlistMovies();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void fetchFavoriteMovies() async {
+    try {
+      final movies = await ApiService().fetchFavoriteMovies();
+      favoriteMovies.assignAll(movies);
+    } catch (e) {
+      Get.snackbar('Error', e.toString(), colorText: AppColor.whiteColor);
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  void fetchWatchlistMovies() async {
+    try {
+      final movies = await ApiService().fetchWatchlistMovies();
+      watchlistMovies.assignAll(movies);
+    } catch (e) {
+      Get.snackbar('Error', e.toString(), colorText: AppColor.whiteColor);
+    }
   }
 
-  void increment() => count.value++;
+  Future<void> addToFavorite(String movieId, bool isFavorite) async {
+    await ApiService().postFavoriteMovie(movieId, isFavorite);
+    fetchFavoriteMovies();
+  }
+
+  Future<void> addToWatchlist(String movieId, bool isWatchlist) async {
+    await ApiService().postWatchlistMovie(movieId, isWatchlist);
+    fetchWatchlistMovies();
+  }
 }
